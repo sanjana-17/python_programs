@@ -1,0 +1,167 @@
+-------------------------------------------------------------------------------
+Problem 1:
+-------------------------------------------------------------------------------
+n = int(input())
+a = map(int, input().split())
+a = list(set(list(a)))
+l = len(a)
+a = sorted(a)
+print(a[l-2])
+-------------------------------------------------------------------------------
+Problem 2:
+-------------------------------------------------------------------------------
+string = input()
+no_rotation = int(input())
+rotation_list = []
+
+for _ in range(no_rotation):
+    rotation_list.append(input().split()) # L 3
+
+firstchar_string = ""
+for r_type, nor in rotation_list:
+    nor = int(nor)
+    if r_type == "L":
+        firstchar_string += (string[nor:]+ string[:nor])[0]
+    elif r_type == "R":
+        firstchar_string += (string[nor*-1:] + string[:len(string)-nor])[0]
+
+sub_list =[]
+for index1 in range(1,len(string)+1):
+    for index2 in range(index1,len(string)+1):
+        if len(string[index1-1:index2]) == 3:
+            sub_list.append(string[index1-1:index2])
+
+for substring in sub_list:
+    if sorted(firstchar_string) == sorted(substring):
+        print("Yes")
+        break
+    else:
+        print("No")
+        break
+-------------------------------------------------------------------------------
+Problem 3:
+-------------------------------------------------------------------------------
+string = input()
+vowels = []
+words = []
+start_index = 0
+
+for index in range(len(string)):
+    if string[index].lower() in "aeiou":
+        vowels.append(string[index])
+        words.append(string[start_index:index])
+        start_index = index+1
+if string[start_index:] != "":
+    words.append(string[start_index:])
+print(vowels)
+print(words)
+-------------------------------------------------------------------------------
+Problem 4:
+-------------------------------------------------------------------------------
+list1 = []
+n = int(input("No.of elements: "))
+
+for i in range(n):
+    elt = int(input())
+    list1.append(elt)
+
+i = 1
+
+if i < n:
+    while i<n and list1[i] > list1[i-1]:
+        i += 1
+    while i<n and list1[i] == list1[i-1]:
+        i += 1
+    while i<n and list1[i] < list1[i-1]:
+        i += 1
+    print("Yes")
+else:
+    print("No")
+-------------------------------------------------------------------------------
+Problem 5:
+-------------------------------------------------------------------------------
+# Program to print the maximum number of idlis
+
+T = int(input("Enter the number of test cases: "))
+a=[]
+for i in range (0,T):
+    A,B,K = map(int,input().split())
+    x = K//A
+    y = K//B
+    z = max(x,y)
+    a.append(z) # a is a list
+
+for b in a:
+    print(b) # printing each element of list a separately
+-------------------------------------------------------------------------------
+Problem 6:
+-------------------------------------------------------------------------------
+# Problem 6
+# Program to remove the Nth occurence of a given word
+
+list1 = input().split()
+word, N = input().split()
+
+count = list1.count(word)
+
+i = 0
+index = -1
+
+while count > 0:
+    index = list1.index(word, index+1)
+    i += 1
+    if i == int(N):
+        list1.pop(index)
+        break
+    count -= 1
+print(list1)
+-------------------------------------------------------------------------------
+Problem 7:
+-------------------------------------------------------------------------------
+sent = input("Enter the sentence: ")
+
+s1 = sent.split()
+s2 = reversed(s1)
+s3 = " ".join(s2)
+print(s3)
+-------------------------------------------------------------------------------
+Problem 8:
+-------------------------------------------------------------------------------
+s1 = input("Enter first string: ")
+s2 = input("Enter second string: ")
+
+a = len(s1)
+b = len(s2)
+
+for i in range(b-a+1):
+    for j in range(a):
+        if s2[i+j] != s1[j]:
+            break
+
+if j+1 == a:
+    print("No")
+else:
+    print("Yes")
+-------------------------------------------------------------------------------
+Problem 9:
+-------------------------------------------------------------------------------
+sent = input("Enter the sentence: ")
+s1 = sent.split()
+
+for word in s1:
+    if len(word) % 2 == 0:
+        print(word)
+-------------------------------------------------------------------------------
+Problem 10:
+-------------------------------------------------------------------------------
+import re
+
+string = input()
+
+a = re.compile('[@_!#$%^&*()<>?/\|{}~:]')
+
+if a.search(string) is None:
+    print("String is accepted")
+else:
+    print("String is not accepted")
+-------------------------------------------------------------------------------
